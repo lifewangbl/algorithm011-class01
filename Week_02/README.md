@@ -1,4 +1,80 @@
 ## 学习笔记
+### 知识点总结
+    Hashtable:哈希表也叫散列表，是根据关键码值（Key value）而直接进行访问的数据结构。
+              它通过把关键码值映射到表中一个位置来访问记录，以加快查找的 速度。 
+    Map：key-value对，key不重复；Set：不重复元素的集合
+    Set：不重复元素的集合。
+    二叉树遍历：前序遍历：根-左-右
+                    List<Integer> list = new ArrayList<Integer>();
+                    public List<Integer> preorderTraversal(TreeNode root) {
+                    	if (root == null)  return new ArrayList();
+                    	pre(root);
+                    	return list;
+                    }
+                    private void pre(TreeNode node) {
+                    	if(node!=null){
+                    		list.add(node.val);
+                    		this.pre(node.left);
+                    		this.pre(node.right);
+                    	}
+                    }
+               中序遍历：左-根-右
+                    public List<Integer> inorderTraversal(TreeNode root) {
+                    	if (root == null) return new ArrayList();
+                    	preInorder(root);
+                    	return list;
+                    }
+                    public void preInorder(TreeNode root){
+                    	if (root != null){
+                    		preInorder(root.left);
+                    		list.add(root.val);
+                    		preInorder(root.right);
+                    	} 
+                    }
+               后序遍历：左-右-根
+                    List<Integer> list = new ArrayList<Integer>();
+                    public List<Integer> postorderTraversal(TreeNode root) {
+                    	if (root == null) return new ArrayList();
+                    	pre(root);
+                    	return list;
+                    }
+                    public void pre(TreeNode root){
+                    	if (root != null) {
+                    		pre(root.left);
+                    		pre(root.right);
+                    		list.add(root.val);
+                    	}
+                    }
+    二叉搜索树(Binary Search Tree):
+        二叉搜索树，也称有序二叉树（Ordered Binary Tree）、 排序二叉树（Sorted Binary Tree），是指一棵空树或者具有下列性质的 二叉树：
+            1. 左子树上所有结点的值均小于它的根结点的值； 
+            2. 右子树上所有结点的值均大于它的根结点的值； 
+            3. 以此类推：左、右子树也分别为二叉查找树。 （这就是 重复性！）
+            中序遍历：升序排列
+    堆(Heap):
+        Heap:可以迅速找到一堆树中的最大或最小值的数据结构。
+        将根节点最大的堆叫做大顶堆或大根堆，根节点最小的叫做小顶堆或小根堆。
+    二叉堆：
+        通过完全二叉树来实现(不是二叉搜索树);
+        二叉堆(大顶)满足以下性质：
+            1、是一颗完全树；
+            2、树中任意节点的值总是>=其子节点的值
+        实现细节：
+            1、二叉堆一般通过“数组”来实现；
+            2、假设“第一个元素”在数组中的索引为0的话，则父节点和子节点的位置关系如下：
+                1>索引为i的左孩子的索引是：2*i+1;
+                2>索引为i的右孩子的索引是：2*i+2;
+                3>索引为i的父节点的索引是：floor((i-1)/2);
+        插入操作：
+            1、新元素一律先插入到堆的尾部
+            2、依次向上调整整个堆的结构(一直到根即可)
+        删除堆顶操作(Delete Max)：
+            1、将堆尾元素替换到顶部(即堆顶被替代删除掉)
+            2、依次从根部向下调整整个堆的结构(一直到堆尾即可)
+    这周学习的东西还挺多的，也有一定的难度了，个人对于树相关的算法还是很陌生的，所以在学习和
+    实践的过程中也是有些艰辛的，但是在这其中却真的体验到了老师交给我们的五毒神掌的重要性，通
+    过不断地记忆和重复的刷题，让我对树这类的算法也有了越来越深的理解。一路荆棘丛生，贵在坚持！
+    加油！！
 ### HashMap分析总结
     1、存储结构
        JDK1.8之前 HashMap = 数组(O(1)）+ 单向链表（O(n)）
