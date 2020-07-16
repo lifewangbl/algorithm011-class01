@@ -48,4 +48,18 @@
           其所求得的答案比较接近最优结果，贪心 法也可以用作辅助算法或者直接解决一些要求结果不特别精确的问题。   
     5、适用贪心算法的场景
         简单地说，问题能够分解成子问题来解决，子问题的最优解能递推到最终 问题的最优解。这种子问题最优解称为最优子结构。
-                       
+### 二分查找
+    前提：1、目标函数单调性(单调递增或递减)
+         2、存在上下界(bounded)
+         3、能够通过索引访问(index accessible)
+    模板：
+        left, right = 0, len(array) - 1  
+        while left <= right:
+             mid = (left + right) / 2
+             if array[mid] == target:
+        		# find the target!!
+                break or return result
+        	 elif array[mid] < target:
+        		left = mid + 1
+        	 else:
+        	    right = mid - 1                      
