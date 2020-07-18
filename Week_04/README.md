@@ -53,13 +53,55 @@
          2、存在上下界(bounded)
          3、能够通过索引访问(index accessible)
     模板：
-        left, right = 0, len(array) - 1  
-        while left <= right:
-             mid = (left + right) / 2
-             if array[mid] == target:
-        		# find the target!!
-                break or return result
-        	 elif array[mid] < target:
-        		left = mid + 1
-        	 else:
-        	    right = mid - 1                      
+        public int binarySearch(int[] array, int target) {
+            int left = 0, right = array.length - 1;
+            while (left <= right) {
+                int mid = (right - left) / 2 + left;
+                if (array[mid] == target) {
+                    return mid;
+                } else if (array[mid] > target) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            }
+            return -1;
+        }    
+### 搜索旋转排序数组(33)
+    题目：假设按照升序排序的数组在预先未知的某个点上进行了旋转。( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。
+         搜索一个给定的目标值，如果数组中存在这个目标值，则返回它的索引，否则返回 -1 。你可以假设数组中不存在重复的元素。
+         你的算法时间复杂度必须是 O(log n) 级别。
+         示例 1:  输入: nums = [4,5,6,7,0,1,2], target = 0   输出: 4 
+         示例 2:  输入: nums = [4,5,6,7,0,1,2], target = 3   输出: -1   
+         示例 3:  输入: nums = [1,3], target = 3   输出: 1 
+    解题思路：套二分法模板
+             1、定义left，right
+             2、while循环，定义mid
+             3、比较数组nums[mid]=target,即所求返回
+             4、若nums[mid]<nums[right](右半部分有序，若target在(nums[mid],nums[right]]范围,left=mid+1,否则，right=mid-1)
+                否则查找左半部分。
+    代码：
+        public int search(int[] nums, int target) {
+            int left=0,right=nums.length-1;
+            while (left<=right) {
+                int mid = (left+right)/2;
+                if (nums[mid]==target) {
+                    return mid;
+                } 
+                if (nums[mid]<nums[right]) {
+                    if (nums[mid]<target && target<=nums[right]) {
+                        left = mid + 1;
+                    } else {
+                        right = mid - 1;
+                    }
+                } else {
+                    if (nums[mid]>target && target>=nums[left]) {
+                        right = mid - 1;
+                    } else {
+                        left = mid + 1;
+                    }
+                }
+            }
+            return -1;
+        }
+                             
